@@ -1,0 +1,13 @@
+name: okteto-test
+autocreate: true
+image: registry.cloud.okteto.net/sswastioyono18/oktetotest:latest
+command: bash
+securityContext:
+  capabilities:
+    add:
+    - SYS_PTRACE
+sync:
+- .:/usr/src/app
+forward:
+- 2345:2345
+- 8080:8080
