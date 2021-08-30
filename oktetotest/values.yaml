@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: sactio1811/oktetotest:latest
+  repository: sactio1811/oktetotest
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
