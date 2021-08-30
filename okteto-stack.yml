@@ -1,5 +1,5 @@
 services:
   oktetotest:
-    image: sactio1811/oktetotest:latest
+    image: sactio1811/oktetotest:0.1
     ports:
       - 8080
