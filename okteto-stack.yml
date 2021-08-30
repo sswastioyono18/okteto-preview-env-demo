@@ -3,3 +3,7 @@ services:
     image: sactio1811/oktetotest:0.1
     ports:
       - 8080
+    endpoints:
+      - path: /v1
+        service: oktetotest
+        port: 8080
