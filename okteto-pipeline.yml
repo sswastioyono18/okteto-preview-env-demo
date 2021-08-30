@@ -1,0 +1,4 @@
+icon: https://apps.okteto.com/movies/icon.png
+deploy:
+  - docker buildx build  . -t sactio1811/oktetotest:${OKTETO_GIT_COMMIT} --push
+  - helm install -f oktetotest/values.yaml oktetotest ./oktetotest --set tag=${OKTETO_GIT_COMMIT}
