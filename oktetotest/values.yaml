@@ -47,7 +47,10 @@ ingress:
     dev.okteto.com/generate-host: "true"
     dev.okteto.com/private: "true"
   hosts:
-    - oktetotest.local
+    - host: oktetotest.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
