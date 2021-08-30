@@ -1,6 +1,6 @@
 name: okteto-test
 autocreate: true
-image: sactio1811/oktetotest:0.2
+image: sactio1811/oktetotest:latest
 command: bash
 securityContext:
   capabilities:
