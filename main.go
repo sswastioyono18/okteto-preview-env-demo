@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	fmt.Println("This is v2")
+	fmt.Println("This is v2 tests")
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Get("/v1", func(w http.ResponseWriter, r *http.Request) {

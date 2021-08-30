@@ -1,6 +1,6 @@
 services:
   oktetotest:
-    image: sactio1811/oktetotest:0.1
+    image: sactio1811/oktetotest:0.2
     ports:
       - 8080
     endpoints:
