@@ -13,9 +13,9 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("halo dunia"))
+		w.Write([]byte("halo dunia tipu tipu"))
 	})
-	
+
 	r.Get("/v1", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("welcome v4"))
 	})
