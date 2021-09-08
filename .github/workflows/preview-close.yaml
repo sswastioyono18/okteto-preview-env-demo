@@ -35,6 +35,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: master-swastioyono18
+          name: master-sswastioyono18
           scope: personal
           timeout: 15m
