@@ -4,9 +4,6 @@ name: Okteto Preview
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -31,16 +28,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           if: github.event.pull_request.merged == false
-          name: pr-${{ github.event.number }}-sswastioyono18
-          scope: personal
-          timeout: 15m
-
-      - name: Deploy preview environment - master
-        uses: okteto/deploy-preview@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          if: github.event.pull_request.merged == true
           name: pr-${{ github.event.number }}-sswastioyono18
           scope: personal
           timeout: 15m
