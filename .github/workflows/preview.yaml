@@ -25,11 +25,22 @@ jobs:
         with:
           token: ${{ secrets.OKTETO_TOKEN }}
 
-      - name: Deploy preview environment
+      - name: Deploy preview environment - feature branch
         uses: okteto/deploy-preview@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          if: github.event.pull_request.merged == false
+          name: pr-${{ github.event.number }}-sswastioyono18
+          scope: personal
+          timeout: 15m
+
+      - name: Deploy preview environment - master
+        uses: okteto/deploy-preview@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          if: github.event.pull_request.merged == true
           name: pr-${{ github.event.number }}-sswastioyono18
           scope: personal
           timeout: 15m
