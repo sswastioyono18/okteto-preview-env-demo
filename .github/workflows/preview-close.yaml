@@ -21,17 +21,18 @@ jobs:
         with:
           name: pr-${{ github.event.number }}-sswastioyono18
 
-    if: github.event.pull_request.merged == true
       - name: Login
+        if: github.event.pull_request.merged == true
         uses: okteto/login@master
         with:
           token: ${{ secrets.OKTETO_TOKEN }}
 
       - name: Deploy preview environment
+        if: github.event.pull_request.merged == true
         uses: okteto/deploy-preview@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: master-sswastioyono18
+          name: sswastioyono18
           scope: personal
           timeout: 15m
