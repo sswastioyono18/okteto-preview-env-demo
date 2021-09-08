@@ -9,11 +9,14 @@ import (
 )
 
 func main() {
-	fmt.Println("This is v3 tests")
+	fmt.Println("This is v4 tests")
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
+	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("halo dunia"))
+	})
 	r.Get("/v1", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("welcome v3"))
+		w.Write([]byte("welcome v4"))
 	})
 
 	http.ListenAndServe(":8080", r)
