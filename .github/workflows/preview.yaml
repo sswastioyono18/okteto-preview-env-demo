@@ -12,11 +12,28 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  preview:
+  destroy-environment:
+    if: github.event.pull_request.merged == false
     runs-on: ubuntu-latest
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: Login
+      uses: okteto/login@master
+      with:
+        token: ${{ secrets.OKTETO_TOKEN }}
+
+    - name: Destroy preview environment
+      continue-on-error: true
+      uses: okteto/destroy-preview@master
+      with:
+        name: pr-${{ github.event.number }}-sswastioyono18
+
+
+  preview:
+    needs: destroy-environment
+    if: github.event.pull_request.merged == false
+    runs-on: ubuntu-latest
+    steps:
       - name: Login
         uses: okteto/login@master
         with:
@@ -27,7 +44,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          if: github.event.pull_request.merged == false
           name: pr-${{ github.event.number }}-sswastioyono18
           scope: personal
           timeout: 15m
