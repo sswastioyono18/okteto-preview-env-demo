@@ -16,11 +16,10 @@ RUN apk --no-cache add tzdata ca-certificates
 FROM bgruening/busybox-bash
 ARG APPLICATION_NAME=oktetotest
 WORKDIR /opt/$APPLICATION_NAME
-COPY --from=build-env /opt/$APPLICATION_NAME/bin/$APPLICATION_NAME .
+COPY --from=build-env /opt/$APPLICATION_NAME/bin/$APPLICATION_NAME /opt/$APPLICATION_NAME/$APPLICATION_NAME
 COPY --from=alpine /usr/share/zoneinfo /usr/share/zoneinfo
 ENV TZ=Asia/Jakarta
 USER root
-RUN chmod +x /opt/$APPLICATION_NAME/$APPLICATION_NAME
 
-EXPOSE 8080
+ENTRYPOINT "./oktetotest"
 
