@@ -21,7 +21,24 @@ jobs:
         with:
           name: pr-${{ github.event.number }}-sswastioyono18
 
+  destroy-master-environment:
+    if: github.event.pull_request.merged == false
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Login
+        uses: okteto/login@master
+        with:
+          token: ${{ secrets.OKTETO_TOKEN }}
+
+      - name: Destroy preview environment
+        continue-on-error: true
+        uses: okteto/destroy-preview@master
+        with:
+          name: master-sswastioyono18
+
   deploy-master:
+    needs: destroy-master-environment
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
@@ -29,11 +46,6 @@ jobs:
         uses: okteto/login@master
         with:
           token: ${{ secrets.OKTETO_TOKEN }}
-
-#      - name: Destroy master environment
-#        uses: okteto/destroy-preview@master
-#        with:
-#          name: master-sswastioyono18
 
       - name: Deploy preview environment - master branch
         uses: okteto/deploy-preview@master
