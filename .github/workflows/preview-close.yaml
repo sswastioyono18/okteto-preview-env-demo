@@ -22,7 +22,7 @@ jobs:
           name: pr-${{ github.event.number }}-sswastioyono18
 
   destroy-master-environment:
-    if: github.event.pull_request.merged == false
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
