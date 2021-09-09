@@ -30,7 +30,12 @@ jobs:
         with:
           token: ${{ secrets.OKTETO_TOKEN }}
 
-      - name: Deploy preview environment - feature branch
+#      - name: Destroy master environment
+#        uses: okteto/destroy-preview@master
+#        with:
+#          name: master-sswastioyono18
+
+      - name: Deploy preview environment - master branch
         uses: okteto/deploy-preview@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
