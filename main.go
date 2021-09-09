@@ -9,15 +9,15 @@ import (
 )
 
 func main() {
-	fmt.Println("This is okteto tests 1233456")
+	fmt.Println("This is okteto print test")
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("halo dunia fana masa sih boong aja lalala llilili"))
+		w.Write([]byte("hello world this is endpoint /"))
 	})
 
 	r.Get("/v1", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("welcome"))
+		w.Write([]byte("welcome v1"))
 	})
 
 	http.ListenAndServe(":8080", r)
